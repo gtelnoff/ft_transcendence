@@ -1,0 +1,129 @@
+.match-component {
+  width: max(380px, 60vw);
+  height: max(80px, 8vw);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: max(10px, 1vw);
+  align-self: center;
+  color: white;
+}
+
+.win {
+  background: rgb(48, 106, 72);
+  background: linear-gradient(
+    90deg,
+    rgba(48, 106, 72, 0.8) 0%,
+    rgba(48, 106, 72, 0) 100%
+  );
+}
+
+.loss {
+  background: rgb(144, 13, 13);
+  background: linear-gradient(
+    90deg,
+    rgba(144, 13, 13, 0.8) 0%,
+    rgba(255, 0, 11, 0) 100%
+  );
+}
+
+.draw {
+  background: rgb(131, 131, 131);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 131, 131, 0.8) 0%,
+    rgba(131, 131, 131, 0) 100%
+  );
+}
+
+.player1 {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: row;
+  width: 40%;
+}
+
+.player2 {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  flex-direction: row-reverse;
+  width: 40%;
+}
+
+.player-mode-stats {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: rgba(252, 252, 252, 0.534);
+  font-weight: 600;
+  font-size: max(1vw, 10px);
+}
+
+.player-avatar {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: max(10px, 1vw);
+  object-fit: fill;
+}
+
+.player1 .player-avatar {
+  border: 1mm ridge rgba(2, 90, 255, 0.6);
+}
+
+.player2 .player-avatar {
+  border: 1mm ridge rgba(255, 38, 0, 0.6);
+}
+
+.player2 .player-name {
+  cursor: pointer;
+}
+
+.player-name {
+  max-width: 12vw;
+  font-size: max(15px, 1.5vw);
+  font-weight: 800;
+  margin: max(5px, 0.5vw);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player1 .player-mode-stats .player-name {
+  color: rgb(116, 185, 255);
+}
+
+.player2 .player-mode-stats .player-name {
+  color: rgb(255, 117, 117);
+}
+
+.match {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  vertical-align: top;
+}
+
+.match-type {
+  font-size: max(12px, 1.2vw);
+  font-weight: 600;
+}
+
+.match-time {
+  font-size: max(10px, 1vw);
+  color: rgb(180, 180, 180);
+}
+
+.match-result {
+  font-size: max(12px, 1.2vw);
+  color: rgb(180, 197, 118);
+  font-weight: 500;
+}
+
+.match-scores {
+  font-size: max(25px, 3vw);
+  font-weight: 700;
+}

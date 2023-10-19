@@ -1,0 +1,154 @@
+.mode-select-title {
+  margin: 5vh 20vw 0 20vw;
+  border-style: solid;
+  border-width: 10px;
+  border-color: #70707040;
+  font-family: "DaStreet";
+  font-size: max(50px, 5vh);
+  background: linear-gradient(270deg, rgb(255, 230, 0), rgb(216, 0, 0));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  cursor: default;
+  user-select: none;
+}
+.mode-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  width: 100vw;
+}
+
+.mode {
+  min-width: 300px;
+  max-height: 500px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: #70707040;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mode-name {
+  font-family: "DaStreet";
+  padding: 10px;
+  font-size: max(30px, 5vh);
+  background: linear-gradient(270deg, rgb(255, 136, 0), rgb(194, 216, 0));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  user-select: none;
+}
+
+#double-trouble-title:hover {
+  animation: shake 1s ease 0s 1 normal forwards;
+}
+
+#classic-title:hover {
+  animation: jello 1s ease 0s 1 normal forwards;
+}
+
+.mode-img {
+  min-width: 150px;
+  min-height: 150px;
+  width: 30vw;
+  height: 30vw;
+}
+
+.classic {
+  background-image: url("./../../../imgs/classic.png");
+  background-size: 100% 100%;
+}
+
+.mode-img:hover {
+  transform: scale(1.2);
+  transition: 500ms;
+}
+
+.custom {
+  background-image: url("./../../../imgs/custom.png");
+  background-size: 100% 100%;
+}
+
+@media (max-width: 600px) {
+  .mode-select {
+    flex-direction: column;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mode {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+
+  10% {
+    transform: rotate(8deg);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: rotate(-10deg);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: rotate(10deg);
+  }
+
+  80% {
+    transform: rotate(-8deg);
+  }
+
+  90% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes jello {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}

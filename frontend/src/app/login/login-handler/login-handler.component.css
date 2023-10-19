@@ -1,0 +1,194 @@
+.text{
+    font-family: 'Roboto', sans-serif;
+    font-size: 4vh;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 1vh;
+}
+
+.button
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23vh;
+    height: 5vh;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 7vh;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 3px 20px 3px 20px;
+    border-radius: 25px;
+    margin: 10px;
+    transition: background-color 500ms;
+    
+}
+
+.button-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    margin-top: 4vh;
+}
+
+.otp-input
+{
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+}
+
+.welcome-message
+{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5vh;
+    font-weight: 500;
+    width: 25em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.button:hover
+{
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.bad-code-text
+{
+    color: #ff0033;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+    font-weight: 700;
+}
+
+
+.qrcode-container
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.qrcode
+{
+    border-radius: 15px;
+    background-color: white;
+    margin: 2vh;
+}
+
+.left-arrow{
+    margin-right: 1.5vh;
+    width: 2.25vh;
+}
+
+.verified-icon
+{
+    width: 15vh;
+}
+
+
+
+/* Avatar css */
+
+
+.information
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.landscape
+{
+    width:10vw;
+    height:10vw;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 2vh;
+}
+
+.landscape img
+{
+    cursor: pointer;
+    height:100%;
+}
+
+.avatar-container
+{
+    margin-top: 4vh;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;    
+}
+
+.pen
+{
+    cursor: pointer;
+    position: absolute;
+    width: 3vh;
+    margin-top: -5vw;
+    margin-left: -0.5vw;
+}
+
+.chat-input
+{
+    
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 4vh;
+    font-weight: 700;
+    display: flex;
+    background: none;
+    border: none;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.login
+{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 2vh;
+    font-weight: 400;
+    display: flex;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.404);
+    
+}
+
+.error
+{
+    font-family: 'Roboto', sans-serif;
+    color: rgb(255, 56, 56);
+    font-size: 3vh;
+    font-weight: 400;
+    display: flex;
+}

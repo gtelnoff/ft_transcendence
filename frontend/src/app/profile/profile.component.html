@@ -1,0 +1,59 @@
+<div *ngIf="errorNotFound" class="error-notfound">
+  The username specified was not found in the database.
+</div>
+<div *ngIf="player" class="profile-container">
+  <img class="avatar" src="{{ icon }}" />
+  <div class="nick-name">{{ userName }}</div>
+  <div class="login">@{{ login }}</div>
+  <div class="login" *ngIf="!isTheUser && notificationService.currentProfileStatus">
+    {{ notificationService.currentProfileStatus.status }}
+  </div>
+  <div *ngIf="isTheUser" class="button-container">
+    <div class="button" (click)="goTo('settings')">Settings</div>
+    <div class="button" (click)="logout()">Logout</div>
+  </div>
+  <div *ngIf="!isTheUser" class="button-container">
+    <div *ngIf="!userBlocked" class="button" (click)="friendButton()">
+      {{ friendButtonLabel.get(friendState) }}
+    </div>
+    <div
+      *ngIf="!userBlocked && canRefuseInvite"
+      class="button"
+      (click)="refuseInvite()"
+    >
+      Refuse
+    </div>
+    <div class="button" (click)="blockButton()">
+      {{ blockButtonLabel.get(blockState) }}
+    </div>
+  </div>
+  <div *ngIf="!isTheUser && !userBlocked" class="button-container">
+    <div class="button" (click)="classicChallenge()">Challenge to classic</div>
+    <div class="button" (click)="customChallenge()">
+      Challenge to double trouble
+    </div>
+  </div>
+  <div class="player-stats">
+    <div class="tab classic">
+      <div class="title">Classic</div>
+      <div class="stats">
+        <div>Elo : {{ player.classic_elo }}</div>
+        <div>Wins: {{ player.classic_wins }}</div>
+        <div>Losses: {{ player.classic_losses }}</div>
+      </div>
+    </div>
+    <div class="tab custom">
+      <div class="title">Double trouble</div>
+      <div class="stats">
+        <div>Elo : {{ player.custom_elo }}</div>
+        <div>Wins: {{ player.custom_wins }}</div>
+        <div>Losses: {{ player.custom_losses }}</div>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let match of matchList; last as isLast" class="match-history">
+    <app-match [player]="player" [match]="match"></app-match>
+    <span class="separator" *ngIf="!isLast"></span>
+  </div>
+  <div class="navbar-space"></div>
+</div>

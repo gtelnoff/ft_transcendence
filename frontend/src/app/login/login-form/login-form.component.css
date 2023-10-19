@@ -1,0 +1,206 @@
+.title {
+  font-family: "DaStreet";
+  font-size: 80px;
+  background: linear-gradient(270deg, rgb(255, 230, 0), rgb(216, 0, 0));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  margin-bottom: 3vh;
+  animation: jello2 5s ease 0s infinite normal forwards;
+  padding: 0 5vw 0 5vw;
+}
+
+.welcome-message {
+  font-family: "Handjet", cursive;
+  font-size: 40px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 1vh;
+}
+
+.info-text {
+  font-family: "Handjet", cursive;
+  font-size: 40px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 3vh;
+}
+
+.button a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+  font-family: "Handjet", cursive;
+  font-size: 30px;
+  color: white;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 3px 20px 3px 20px;
+  border-radius: 25px;
+  margin: 10px;
+  transition: background-color 500ms;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: row;
+}
+
+.otp-input {
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+}
+
+.button a:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.bad-code-text {
+  color: #ff0033;
+  font-family: "Roboto", sans-serif;
+  font-size: 3vh;
+  font-weight: 700;
+}
+
+.qrcode-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.qrcode {
+  border-radius: 15px;
+  background-color: white;
+  margin: 2vh;
+}
+
+.down-arrow {
+  margin: 2vh 0 2vh 0;
+  color: white;
+  font-weight: 900;
+  scale: calc(2);
+  animation: vertical-up-down 7s ease 0s infinite normal forwards;
+}
+
+.left-arrow {
+  margin-right: 1.5vh;
+  width: 2.25vh;
+}
+
+.login-icon {
+  margin-left: 1.5vh;
+  width: 3vh;
+}
+
+.shrink {
+  animation: shrink 0.35s ease 0s 1 normal forwards;
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 1s steps(15, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+@keyframes jello2 {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  6% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  8% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  10% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  13% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  15% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  20% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes vertical-up-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateY(-8px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateY(8px);
+  }
+
+  80% {
+    transform: translateY(6.4px);
+  }
+
+  90% {
+    transform: translateY(-6.4px);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}

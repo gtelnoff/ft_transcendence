@@ -1,0 +1,40 @@
+<!-- only apear when user have 2FA -->
+<div *ngIf="selector === 1" class="qrcode-container">
+    <img class="verified-icon" src="../../assets/verified.png" alt="">
+    <div class="text">2FA Verification</div>
+    <div class="welcome-message">Welcome back !<br>Please type your 2FA code as shared on your phone.</div>
+    <ng-otp-input class="otp-input" [formCtrl]="code"  (ngSubmit)="checkCode()" [config]="{length:6, allowNumbersOnly: true}"></ng-otp-input> 
+    <div *ngIf="wrongCode === true" class="bad-code-text">Wrong code !</div>
+    <div class="button-container">
+        <div (click)="goTo('login')" class="button"><img class="left-arrow" src="../../assets/left-arrow.png" alt="">Back</div>
+        <div (click)="checkCode()" class="button">Submit</div>
+    </div>
+</div>
+
+<!-- only apear when user have 2FA -->
+<div *ngIf="selector === 2" class="information">
+    <img class="verified-icon" src="../../assets/information.png" alt="">
+    <div class="text">Information</div>
+    <div class="welcome-message">Welcome {{firstName}} !<br>Please choose a username.</div>
+    <div class="avatar-container">
+        <div class="landscape">
+            <label for="file-input">
+             <img src="{{icon}}" alt="">
+            </label>
+        </div>
+        <label for="file-input">
+            <img class="pen" src="../../assets/pen.png" alt="">
+        </label>
+        <input id="file-input" style="display: none;" class="input-settings" type="file" (change)="getFile($event)">    
+    </div>
+    <div *ngIf="badImageExtension == true" class="error">Bad extention only png and jpg</div>
+    <form class="chat-input-container" [formGroup]="messageForm">
+		<input autofocus type="text" placeholder="username" [maxlength]="12" class="chat-input" formControlName="message">
+	</form>
+    <div class="error">{{errorUsername}}</div>
+    <div class="login">@{{login}}</div>
+    <div class="button-container">
+        <div (click)="goTo('login')" class="button"><img class="left-arrow" src="../../assets/left-arrow.png" alt="">Back</div>
+        <div (click)="send()" class="button">Save</div>
+    </div>
+</div>

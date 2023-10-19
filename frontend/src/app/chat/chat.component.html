@@ -1,0 +1,342 @@
+<div id="leftBar" [ngClass]="{ open: showLeftBar, closed: !showLeftBar }">
+  <div id="openCloseSwitch" (click)="switchLeftBar()">
+    <span
+      class="material-symbols-outlined"
+      [ngClass]="{ turnLeft: showLeftBar, turnRight: !showLeftBar }"
+    >
+      chevron_left
+    </span>
+  </div>
+  <div class="left-bar-container">
+    <mat-button-toggle-group
+      id="toggle-group"
+      class="friend-chat-selector-container"
+      name="fontStyle"
+      aria-label="Font Style"
+      value="{{ leftBarSelector }}"
+    >
+      <mat-button-toggle
+        id="toggle-button1"
+        (click)="changeLeftBarSelector(FRIENDS_SELECTOR)"
+        value="FRIENDS"
+        >FRIENDS</mat-button-toggle
+      >
+      <mat-button-toggle
+        id="toggle-button2"
+        (click)="changeLeftBarSelector(CHATS_SELECTOR)"
+        value="CHATS"
+        >CHATS</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+
+    <!-- LEFT BAR PRIVATE CHATS AND CHANNELS -->
+
+    <div
+      *ngIf="leftBarSelector == CHATS_SELECTOR"
+      class="chat-channels-container"
+    >
+      <div class="chat-list-title">PRIVATE CHATS</div>
+      <div
+        class="chat-list-element"
+        (click)="openDialogCreateDirect('0ms', '0ms')"
+      >
+        <div class="material-symbols-outlined">add</div>
+        <div class="chat-name">Add new chat</div>
+      </div>
+      <div *ngIf="chatService.directChannels.length == 0">
+        No private chat initiated
+      </div>
+      <div
+        class="chat-list-element"
+        *ngFor="let chat of chatService.directChannels"
+        (click)="changeCurrentChannel(chat.id)"
+      >
+        <div class="chat-name">{{ chat.name }}</div>
+      </div>
+      <div class="chat-list-title">CHANNELS</div>
+      <div
+        class="chat-list-element"
+        (click)="openDialogCreateIndirect('0ms', '0ms')"
+      >
+        <div class="material-symbols-outlined">add</div>
+        <div class="chat-name">Create channel</div>
+      </div>
+      <div class="chat-list-element" (click)="openDialogJoin('0ms', '0ms')">
+        <div class="material-symbols-outlined">add</div>
+        <div class="chat-name">Join channel</div>
+      </div>
+      <div *ngIf="chatService.publicChannels.length == 0">
+        No Channel joined
+      </div>
+      <div
+        class="chat-list-element"
+        *ngFor="let channel of chatService.publicChannels"
+        (click)="changeCurrentChannel(channel.id)"
+      >
+        <div class="chat-name">{{ channel.name }}</div>
+        <span
+          class="material-symbols-outlined trash"
+          (click)="kickUser(user.id, channel.id)"
+        >
+          delete
+        </span>
+      </div>
+    </div>
+
+    <!-- LEFT BAR FRIENDS -->
+
+    <div
+      *ngIf="leftBarSelector == FRIENDS_SELECTOR"
+      class="chat-channels-container"
+    >
+      <div class="chat-list-title">FRIENDS</div>
+      <div class="chat-list-element" (click)="openAddUserDialog('0ms', '0ms')">
+        <div class="material-symbols-outlined">add</div>
+        <div class="chat-name">Add Friend</div>
+      </div>
+      <div *ngIf="allFriends !== undefined" class="">
+        <div *ngFor="let friend of allFriends" class="chat-user">
+          <img
+            class="friend-avatar-side-bar"
+            src="/assets/{{ friend.avatarPath }}"
+            alt=""
+          />
+          <div class="left-side-bar-friend-username">
+            <a href="/profile/{{ friend.username }}">{{ friend.username }}</a>
+          </div>
+          <ul class="sousMenu">
+            <li (click)="sendMessageToFriend(friend)">Send message</li>
+            <li (click)="classicChallenge(friend.id)">Challenge(classic)</li>
+            <li (click)="customChallenge(friend.id)">
+              Challenge(double trouble)
+            </li>
+            <li (click)="unfriend(friend)">Unfriend</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+
+<div
+  id="RightBar"
+  [ngClass]="{ openRight: showRightBar, closedRight: !showRightBar }"
+>
+  <div id="openCloseSwitchRight" (click)="switchRightBar()">
+    <span
+      class="material-symbols-outlined"
+      [ngClass]="{ turnLeft: showRightBar, turnRight: !showRightBar }"
+    >
+      chevron_right
+    </span>
+  </div>
+  <div class="left-bar-container">
+    <div *ngIf="chatService.currentChannel == null">NO CHANNEL SELECTED</div>
+    <div *ngIf="chatService.currentChannel" class="user-list">
+      <div
+        *ngIf="
+          chatService.currentChannel && !chatService.currentChannel.is_direct
+        "
+        class="chat-user"
+        (click)="openDialogInvite('0ms', '0ms')"
+      >
+        <div class="material-symbols-outlined">add</div>
+        <div>Invite User</div>
+      </div>
+      <div
+        class="chat-user"
+        *ngFor="let user of chatService.currentChannelUserList"
+        [ngClass]="{
+            ingame: user.status === 'ingame',
+          }"
+      >
+        <div
+          class="chat-user-status"
+          *ngIf="user.status"
+          [ngClass]="{
+            online: user.status === 'online',
+          }"
+        ></div>
+        <a href="profile/{{ user.username }}">{{ user.username }}</a>
+        <ul
+          *ngIf="user.id != this.chatService.currentChannelUser?.id"
+          class="sousMenu"
+        >
+          <li (click)="this.classicChallenge(user.id)">Challenge(Classic)</li>
+          <li (click)="this.customChallenge(user.id)">
+            Challenge(Double trouble)
+          </li>
+          <li
+            *ngIf="
+              !this.chatService.currentChannel.is_direct &&
+              this.chatService.currentChannelUser &&
+              this.chatService.currentChannelUser.is_owner &&
+              user.id != this.chatService.currentChannelUser.id &&
+              (!user.admin || this.chatService.currentChannelUser.is_owner)
+            "
+            (click)="setAdmin(user.id)"
+          >
+            Set/Unset as administrator
+          </li>
+          <li
+            *ngIf="
+              !this.chatService.currentChannel.is_direct &&
+              this.chatService.currentChannelUser &&
+              this.chatService.currentChannelUser.admin &&
+              user.id != this.chatService.currentChannelUser.id &&
+              (!user.admin || this.chatService.currentChannelUser.is_owner)
+            "
+            (click)="kickUser(user.id, chatService.currentChannel.id)"
+          >
+            Kick
+          </li>
+          <li
+            *ngIf="
+              !this.chatService.currentChannel.is_direct &&
+              this.chatService.currentChannelUser &&
+              this.chatService.currentChannelUser.admin &&
+              user.id != this.chatService.currentChannelUser.id &&
+              (!user.admin || this.chatService.currentChannelUser.is_owner)
+            "
+            (click)="banUser(user.id)"
+          >
+            Ban
+          </li>
+          <li
+            *ngIf="
+              !this.chatService.currentChannel.is_direct &&
+              this.chatService.currentChannelUser &&
+              this.chatService.currentChannelUser.admin &&
+              user.id != this.chatService.currentChannelUser.id &&
+              (!user.admin || this.chatService.currentChannelUser.is_owner)
+            "
+            (click)="muteUser(user.id)"
+          >
+            Mute
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+<!-- --------------------------------------------------->
+
+<div class="chat-container">
+  <div *ngIf="chatService.currentChannel" class="chat-title-container">
+    <p style="margin: 10px 10px 10px 10px" class="chat-title">
+      {{ this.chatService.currentChannel.name.toUpperCase() }}
+    </p>
+    <div
+      *ngIf="
+        this.chatService.currentChannelUser &&
+        this.chatService.currentChannelUser.is_owner &&
+        !chatService.currentChannel.is_direct
+      "
+      class="param"
+    >
+      <span class="material-symbols-outlined pointer chat-title">
+        settings
+      </span>
+      <ul class="sousMenu">
+        <li
+          *ngIf="!chatService.currentChannel.private"
+          (click)="changePrivate(chatService.currentChannel.id)"
+        >
+          Set To Private
+        </li>
+        <li
+          *ngIf="chatService.currentChannel.private"
+          (click)="changePrivate(chatService.currentChannel.id)"
+        >
+          Set To Public
+        </li>
+        <li (click)="openDialogPassword('0ms', '0ms')">Set Password</li>
+        <li (click)="unsetPassword()">Unset Password</li>
+      </ul>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      this.chatService.currentChannel && this.chatService.currentChannelMessages
+    "
+    id="chatMessagesContainer"
+    (scroll)="onScroll()"
+    #scrollMe
+    [scrollTop]="scrollMe.scrollHeight"
+  >
+    <div class="no-channel-selected" *ngIf="!chatService.currentChannel">
+      No channel selected
+    </div>
+    <mat-spinner
+      [color]="color"
+      [diameter]="200"
+      [strokeWidth]="15"
+      class="waiting-spinner"
+      *ngIf="
+        chatService.currentChannel &&
+        chatService.currentChannelMessages == undefined
+      "
+    ></mat-spinner>
+    <div
+      class="chat-messages"
+      *ngIf="chatService.currentChannel && chatService.currentChannelMessages"
+    >
+      <div
+        *ngFor="let message of chatService.currentChannelMessages"
+        [ngClass]="{
+          incoming: message.id_player != user.id,
+          sent: message.id_player == user.id
+        }"
+        class="chat-message"
+      >
+        <img
+          class="chat-message-avatar"
+          src="/assets/{{ message.avatar_path }}"
+        />
+        <div class="chat-message-header">
+          <div class="chat-message-name">{{ message.name }}</div>
+          <div class="chat-message-date">
+            {{ message.time_posted | date : "dd/MM/yyyy HH:mm" }}
+          </div>
+        </div>
+        <div class="chat-message-content">{{ message.content }}</div>
+      </div>
+    </div>
+  </div>
+  <form
+    class="chat-input-container"
+    [formGroup]="messageForm"
+    (ngSubmit)="sendMessage()"
+    (click)="closeLeftBar(); closeRightBar()"
+  >
+    <input type="text" class="chat-input" formControlName="message" />
+    <button type="submit" class="material-symbols-outlined send-button">
+      send
+    </button>
+  </form>
+  <div id="scrollButton" *ngIf="showScrollButton" (click)="scrollToBottom()">
+    <span class="material-symbols-outlined"> arrow_downward </span>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+#canvasContainer {
+  width: 100vw;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.topbar {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-weight: 800;
+  font-size: 1.5em;
+}
+
+.topbar-player {
+  width: 45vw;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: row;
+}
+
+.topbar-enemy {
+  width: 45vw;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
+}
+
+.player-stats {
+  display: flex;
+  flex-direction: column;
+  font-size: min(0.8em, 2vh);
+  padding-left: 1em;
+}
+
+.player-avatar {
+  height: 20vw;
+  max-height: 150px;
+  mask-image: url(../../../imgs/photo-mask.png);
+  mask-size: 100% 100%;
+  object-fit: contain;
+}
+
+.topbar-player .player-stats {
+  justify-content: left;
+}
+
+.topbar-enemy .player-stats {
+  justify-content: right;
+}
+
+.topbar-player .player-stats .player-name {
+  font-size: min(3em, 10vh);
+  color: dodgerblue;
+  padding-bottom: min(0.3em, 5vh);
+  font-family: "DaStreet";
+}
+
+.topbar-enemy .player-stats .player-name {
+  font-size: min(3em, 10vh);
+  color: crimson;
+  padding-bottom: min(1em, 0.3vh);
+  font-family: "DaStreet";
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreAndTimer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreAndTimer .scores {
+  display: flex;
+  flex-direction: row;
+}
+
+.scoreAndTimer .scores .scores-separator {
+  margin: 0 20px 0 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .topbar {
+    font-size: 1em;
+  }
+  .topbar-player .player-stats .player-name {
+    font-size: min(2em, 10vh);
+  }
+  .topbar-enemy .player-stats .player-name {
+    font-size: min(2em, 10vh);
+  }
+}

@@ -1,0 +1,26 @@
+<div class="match-component" [ngClass]="{'win': result == 'Win', 'loss': result == 'Loss', 'draw': result == 'Draw' }">
+    <div *ngIf="player_mode_info" class="player1">
+        <img class="player-avatar" src="/assets/{{player_mode_info.avatar_path}}"/>
+        <div class="player-mode-stats">
+            <div class="player-name">{{player_mode_info.username}}</div>
+            <div class="player-stat">Elo    : {{player_mode_info.elo}}</div>
+            <div class="player-stat">Wins   : {{player_mode_info.wins}}</div>
+            <div class="player-stat">Losses : {{player_mode_info.losses}}</div>
+        </div>
+    </div>
+    <div *ngIf="player_mode_info && enemy_mode_info && match" class="match">
+        <div class="match-type">{{gametypeLabel}}</div>
+        <div class="match-time">{{time}}</div> 
+        <div *ngIf="player_mode_info.elochange != undefined" class="match-result"><a *ngIf="player_mode_info.elochange >= 0">+</a>{{player_mode_info.elochange}}</div>
+        <div class="match-scores">{{player_mode_info.score}} - {{enemy_mode_info.score}}</div>
+    </div>
+    <div *ngIf="enemy_mode_info" class="player2">
+        <img class="player-avatar" src="/assets/{{enemy_mode_info.avatar_path}}"/>
+        <div class="player-mode-stats">
+            <div class="player-name" [routerLink]="['/profile', enemy_mode_info.username]">{{enemy_mode_info.username}}</div>
+            <div class="player-stat">Elo    : {{enemy_mode_info.elo}}</div>
+            <div class="player-stat">Wins   : {{enemy_mode_info.wins}}</div>
+            <div class="player-stat">Losses : {{enemy_mode_info.losses}}</div>
+        </div>
+    </div>
+</div>

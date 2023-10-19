@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add Friend</h1>
+<mat-form-field>
+  <mat-icon matSuffix>badge</mat-icon>
+  <mat-label>Username</mat-label>
+  <input
+    matInput
+    type="text"
+    [(ngModel)]="selectedChannelName"
+    name="channelName"
+  />
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>NO</button>
+  <button mat-button [mat-dialog-close]="selectedChannelName" cdkFocusInitial>
+    SEND
+  </button>
+</div>

@@ -1,0 +1,11 @@
+<div class="mode-select-title">SELECT YOUR MODE</div>
+<div class="mode-select">
+  <div class="mode" [routerLink]="['/game/play']" [state]="{ type: 0 }">
+    <div class="mode-name" id="classic-title">Classic</div>
+    <div class="mode-img classic"></div>
+  </div>
+  <div class="mode" [routerLink]="['/game/play']" [state]="{ type: 1 }">
+    <div class="mode-name" id="double-trouble-title">Double Trouble</div>
+    <div class="mode-img custom"></div>
+  </div>
+</div>

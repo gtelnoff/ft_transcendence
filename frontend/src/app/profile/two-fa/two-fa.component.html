@@ -1,0 +1,38 @@
+<!-- QR code -->
+<div *ngIf="selector === 1" class="qrcode-container">
+    <img class="qrcode" src="{{urlQRCode}}" alt="">
+    <div class="text">Scan the QR code </div>
+    <div class="information-text">To activate the 2FA, please scan the qrcode above<br> with your application. </div>
+    <div class="button-container">
+        <div (click)="goTo('settings')" class="button"><img class="left-arrow" src="../../assets/left-arrow.png" alt="">Back</div>
+        <div (click)="changeSelector(2)" class="button">Next<img class="right-arrow" src="../../assets/right-arrow.png" alt=""></div>
+    </div>
+</div>
+
+<!-- Check code -->
+
+<div *ngIf="selector === 2" class="qrcode-container">
+    <img class="verified-icon" src="../../assets/verified.png" alt="">
+    <div class="text">2FA Verification</div>
+    <div class="information-text-2fa">Finally, please enter your 2FA code as it is shared on your phone.</div>
+    <ng-otp-input class="otp-input" [formCtrl]="code"  (ngSubmit)="submitAddTwoFA()" [config]="{length:6, allowNumbersOnly: true}"></ng-otp-input> 
+    <div *ngIf="wrongCode === 1" class="bad-code-text">Wrong code !</div>
+    <div class="button-container">
+        <div (click)="changeSelector(1)" class="button"><img class="left-arrow" src="../../assets/left-arrow.png" alt="">Back</div>
+        <div (click)="submitAddTwoFA()" class="button">Submit</div>
+    </div>
+</div>
+
+<!-- Remove 2FA -->
+
+<div *ngIf="selector === 3" class="qrcode-container">
+    <img class="verified-icon" src="../../assets/verified.png" alt="">
+    <div class="text">2FA Verification</div>
+    <div class="information-text-2fa">To remove the 2FA, please enter your 2FA code as it is shared on your phone.</div>
+    <ng-otp-input class="otp-input" [formCtrl]="code"  (ngSubmit)="submitRemoveTwoFA()" [config]="{length:6, allowNumbersOnly: true}"></ng-otp-input> 
+    <div *ngIf="wrongCode === 1" class="bad-code-text">Wrong code !</div>
+    <div class="button-container">
+        <div (click)="goTo('settings')" class="button"><img class="left-arrow" src="../../assets/left-arrow.png" alt="">Back</div>
+        <div (click)="submitRemoveTwoFA()" class="button">Submit</div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="qrcode-container" [ngClass]="{ shrink: clickOnLoginButton }">
+  <div class="elcome-message-container">
+    <div class="welcome-message typewriter">Welcome to</div>
+  </div>
+  <div class="title">PaPong</div>
+  <div class="info-text">To play with your friends...</div>
+  <div class="info-text">... just login with 42</div>
+  <div class="down-arrow">
+    <span class="material-symbols-rounded"> arrow_downward </span>
+  </div>
+
+  <div class="button-container">
+    <div class="button" (click)="loginButtonClicked()">
+      <a>LOGIN</a>
+    </div>
+    <!-- <div class="button" (click)="debugTestUser()">
+      <a>Test user</a>
+    </div> -->
+  </div>
+</div>

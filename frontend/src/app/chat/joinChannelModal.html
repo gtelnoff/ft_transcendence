@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Join channel</h1>
+<div mat-dialog-content>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let channel of data.channelList" [value]="channel.name">
+      {{channel.name}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-form-field>
+    <mat-icon matSuffix>badge</mat-icon>
+    <mat-label>Channel name</mat-label>
+    <input
+      matInput
+      type="text"
+      [matAutocomplete]="auto"
+      [(ngModel)]="selectedChannelName"
+      name="channelName"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-icon matSuffix>key</mat-icon>
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="password" name="password" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button
+    mat-button
+    [mat-dialog-close]="{selectedChannelName : selectedChannelName, password: password}"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</div>

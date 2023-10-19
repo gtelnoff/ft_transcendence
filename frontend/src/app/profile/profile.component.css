@@ -1,0 +1,146 @@
+.error-notfound {
+  font-size: max(20px, 2vw);
+  color: white;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* padding-bottom: min(6vh, 50px); */
+  align-items: center;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.nick-name {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-size: 4vh;
+  font-weight: 700;
+  display: flex;
+}
+
+.avatar {
+  width: max(100px, 10vw);
+  aspect-ratio: 1;
+  object-fit: fill;
+  margin-top: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.login {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-size: 2vh;
+  font-weight: 400;
+  display: flex;
+  margin-bottom: 3vh;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max(9vw, 90px);
+  height: max(3vw, 30px);
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: max(1.2vw, 12px);
+  color: white;
+  font-weight: 700;
+  margin-bottom: 7vh;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 3px 20px 3px 20px;
+  border-radius: 25px;
+  margin: 10px;
+  transition: background-color 500ms;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/************************************
+            Player stats
+*************************************/
+
+.classic {
+  text-align: left;
+}
+
+.custom {
+  text-align: right;
+}
+
+.player-stats {
+  display: flex;
+  flex-direction: row;
+}
+
+.tab {
+  width: max(150px, 15vw);
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  background-color: #b4b4b40e;
+}
+
+.title {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: max(1.5vw, 15px);
+  font-weight: 700;
+  border-bottom: solid #a82c45b6;
+  padding: 5px;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: max(1.2vw, 12px);
+  font-weight: 450;
+  padding: 3px;
+}
+
+/************************************
+            Match history
+*************************************/
+
+.match-history {
+  display: flex;
+  flex-direction: column;
+}
+
+.separator {
+  border-top: solid #4e4e4e7c;
+  margin: 10px;
+}
+
+.navbar-space {
+  height: 7vh;
+  min-height: 58px;
+}
+
+@media screen and (max-width: 500px) {
+  .button-container {
+    flex-direction: column;
+  }
+}

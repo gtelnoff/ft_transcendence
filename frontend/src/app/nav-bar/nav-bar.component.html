@@ -1,0 +1,53 @@
+<div class="nav-bar">
+  <div class="nav-bar-button-container">
+    <div class="nav-bar-button" routerLink="/chat">
+      <span class="material-symbols-outlined"> chat </span>
+    </div>
+
+    <div class="nav-bar-button" routerLink="/game">
+      <span class="material-symbols-outlined"> stadia_controller </span>
+    </div>
+    <div class="nav-bar-button" routerLink="/profile">
+      <span class="material-symbols-outlined"> face </span>
+    </div>
+    <button
+      class="nav-bar-button"
+      [matBadge]="socketService.notifications.length"
+      matBadgeColor="warn"
+      [matBadgeHidden]="socketService.notifications.length == 0"
+      [matMenuTriggerFor]="menu"
+      [disabled]="socketService.notifications.length == 0"
+    >
+      <span class="material-symbols-outlined"> notifications </span>
+    </button>
+    <mat-menu #menu="matMenu" panelClass="notifications-menu">
+      <div
+        class="navbar-notification"
+        *ngFor="let notification of socketService.notifications"
+      >
+        <button
+          *ngIf="notification.type == 'FRIEND'"
+          mat-menu-item
+          (click)="$event.stopPropagation(); accept(notification)"
+        >
+          New {{ notifTypeLabel.get(notification.type) }} from
+          {{ notification.friend?.username }}
+        </button>
+        <button
+          *ngIf="notification.type == 'CHALLENGE'"
+          mat-menu-item
+          (click)="$event.stopPropagation(); accept(notification)"
+        >
+          New {{ notifTypeLabel.get(notification.type) }} from
+          {{ notification.challenger?.username }}
+        </button>
+
+        <mat-icon
+          class="reject-notification"
+          (click)="$event.stopPropagation(); reject(notification)"
+          >close</mat-icon
+        >
+      </div>
+    </mat-menu>
+  </div>
+</div>

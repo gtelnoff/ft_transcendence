@@ -1,0 +1,5 @@
+<div class="result-container">
+    <div [routerLink]="['/game']" class="result-button">Mode selection</div>
+    <div [routerLink]="['/game/play']" [state]="{type: type}" class="result-button">Quickplay</div>
+    <app-match [player]="player" [match]="match"></app-match>
+</div>

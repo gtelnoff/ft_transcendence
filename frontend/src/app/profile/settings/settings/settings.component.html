@@ -1,0 +1,28 @@
+<div class="qrcode-container">
+    <img class="verified-icon" src="../../assets/settings.png" alt="">
+    <div class="text">Settings panel</div>
+    <div class="avatar-container">
+        <div class="landscape">
+            <label for="file-input">
+             <img src="{{icon}}" alt="">
+            </label>
+        </div>
+        <label for="file-input">
+            <img class="pen" src="../../assets/pen.png" alt="">
+        </label>
+        <input id="file-input" style="display: none;" class="input-settings" type="file" (change)="getFile($event)">    
+    </div>
+    <div *ngIf="badImageExtension == true" class="error">Bad extention only png and jpg</div>
+    <form class="chat-input-container" [formGroup]="messageForm">
+		<input spellcheck="false" type="text" autofocus [maxlength]="12" class="chat-input" formControlName="message">
+	</form>
+    <div class="error">{{errorUsername}}</div>
+    <div class="login">@{{login}}</div>
+    <div class="button-container">
+        <div (click)="goTo('profile')" class="button"><img class="left-arrow" src="../../assets/left-arrow.png" alt="">Back</div>
+        <div *ngIf="haveTwoFA === false" class="button" (click)="goTo('twofa')">Add 2FA</div>
+        <div *ngIf="haveTwoFA === true" class="button" (click)="goTo('twofa')">Remove 2FA</div>
+        <div type="submit" (click)="send()" class="button">Save</div>
+    </div>
+
+</div>

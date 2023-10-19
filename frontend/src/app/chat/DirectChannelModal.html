@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Start a chat</h1>
+<div mat-dialog-content>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let channel of data.channelList" [value]="channel.name">
+      {{channel.name}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-form-field>
+    <mat-icon matSuffix>badge</mat-icon>
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      type="text"
+      [matAutocomplete]="auto"
+      [(ngModel)]="selectedChannelName"
+      name="channelName"
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button [mat-dialog-close]="selectedChannelName" cdkFocusInitial>
+    Ok
+  </button>
+</div>

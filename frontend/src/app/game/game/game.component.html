@@ -1,0 +1,33 @@
+<div class="game-container">
+	<div class="topbar">
+		<div *ngIf="player" class="topbar-player">
+			<img class="player-avatar" src="../../assets/{{player.avatar_path}}" />
+			<div class="player-stats">
+				<div class="player-name">{{player.username}}</div>
+				<div class="player-stat">Elo : {{player.elo}}</div>
+				<div class="player-stat">Wins : {{player.wins}}</div>
+				<div class="player-stat">Losses : {{player.losses}}</div>
+			</div>
+		</div>
+		<div class="scoreAndTimer">
+			<div *ngIf="player && enemy" class="timer">{{timeRemaining$ | async | date:'mm:ss'}}</div>
+			<div *ngIf="gameStatus == 'resuming'">Resuming in {{resumeRemaining$ | async | date: 'ss'}}</div>
+			<div class="scores">
+				<div *ngIf="player" class="score-player">{{player.score}}</div>
+				<div *ngIf="player && enemy" class="scores-separator"> | </div>
+				<div *ngIf="enemy" class="score-opponent">{{enemy.score}}</div>
+			</div>
+		</div>
+		<div *ngIf="enemy" class="topbar-enemy">
+			<img class="player-avatar" src="../../assets/{{enemy.avatar_path}}" />
+			<div class="player-stats">
+				<div class="player-name">{{enemy.username}}</div>
+				<div class="player-stat">Elo : {{enemy.elo}}</div>
+				<div class="player-stat">Wins : {{enemy.wins}}</div>
+				<div class="player-stat">Losses : {{enemy.losses}}</div>
+			</div>
+			<div *ngIf="gameStatus == 'paused'">Waiting for opponent : {{pauseRemaining$ | async | date:'mm:ss'}}</div>
+		</div>
+	</div>
+	<div id="canvasContainer" #canvasContainer></div>
+</div>
