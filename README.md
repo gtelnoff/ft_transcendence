@@ -5,3 +5,9 @@ The concept is simple, developing <b>multiplayer Pong</b> on a website from scra
 <h2>Technologies used ⚡ </h2> 
 <b>Frontend</b>: Angular, <b>Backend</b>: NestJs, <b>Database</b>: PostgreSQL, <b>JWT</b>: ID token, <b>42API</b>: authentication, <b>socket.io</b>: game, chat, and notifications.
 <h1>Rendering</h1>
+<img src="1.png">
+<img src="2.png">
+<img src="3.png">
+<img src="4.png">
+<img src="5.png">
+<img src="6.png">
